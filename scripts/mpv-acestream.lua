@@ -29,6 +29,8 @@
     -- just open the terminal and run `mpv acestream://content-id`.
     --
     -- Written by Digitalone1
+    --
+    -- LICENSE GPLv3
 
 local utils = require 'mp.utils'
 local msg = require 'mp.msg'
