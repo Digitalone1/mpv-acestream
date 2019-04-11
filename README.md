@@ -8,17 +8,22 @@ To work with it, open the mpv pseudo-GUI, just select an AceStream link you foun
 
 To start the stream from an hyperlink inside your browser, ensure it points to a resource in the following format: `acestream://content-id`. Click on the link and you should be asked to open it with an application. Choose mpv and remember the choice.
 
-If you have only the content ID without the protocol prefix `acestream://`, just open the terminal and run `mpv acestream://content-id`.
+If you have only the content ID without the protocol prefix `acestream://`, just open the terminal and run: 
+
+```mpv acestream://content-id```
 
 ## Installation
 
-Place `mpv-acestream.lua` file in *scripts* folder under mpv config directory. In most cases it should be `/home/your-username/.config/mpv/scripts/`.
+Place `mpv-acestream.lua` file in *scripts* folder under mpv config directory. In most cases it should be
+
+```/home/your-username/.config/mpv/scripts/```
+
 
 * **Arch Linux**: [AUR package](https://aur.archlinux.org/packages/mpv-acestream/)
 
 ## F.A.Q.
 
-### Still can't open AceStream hyperlinks from an internet browser
+### I still can't open AceStream hyperlinks from an internet browser
 For **Firefox**, you should be asked to open it with an app, but usually mpv will not be shown inside the list. If so, browse your filesystem and select the mpv executable installed on your distibution (it is usually placed at `/usr/bin/mpv`). If Firefox still does not open the link and will also not prompt the opening popup, go in *Preferences*, locate *Applications* section and modify *acestream* entry by setting mpv as the default application.
 
 For **Chrome**/**Chromium**, AceStream protocol has to be registered on your system to be opened properly. This depends on your distribution and your desktop environment.
