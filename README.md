@@ -14,12 +14,20 @@ If you have only the content ID without the protocol prefix `acestream://`, just
 
 ## Installation
 
-Place `mpv-acestream.lua` file in *scripts* folder under mpv config directory. In most cases it should be
+Place `mpv-acestream.lua` file in *scripts* folder under mpv config directory. On Unix-like systems it should be
 
 ```/home/your-username/.config/mpv/scripts/```
 
 
 * **Arch Linux**: [AUR package](https://aur.archlinux.org/packages/mpv-acestream/)
+
+## Configuration
+
+The script should work out of the box and usually you don't need to modify anything. But you may need to change the AceStream HTTP engine port if you set it differently from the default *6878* number in AceStream configuration.
+
+Open `mpv-acestream.lua` and change `aceStreamPort` value in the upper part of the text. For example, if you changed port to *12345*, modify port variable like the following:
+
+`local aceStreamPort = 12345`
 
 ## F.A.Q.
 
