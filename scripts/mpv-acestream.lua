@@ -1,3 +1,10 @@
+-- CONFIGURATION SECTION
+
+    local aceStreamPort = 6878  -- Do not enclose port number between quotes
+    
+-- DO NOT EDIT BELOW HERE
+
+
     -- This script adds AceStream protocol support to mpv.
     --
     -- It simply reads input filename/URL argument and if it is an AceStream URL
@@ -7,7 +14,7 @@
     -- and is running on your system.
     --
     -- Place this script in "scripts" folder under mpv config directory.
-    -- In most cases it should be "/home/your-username/.config/mpv/scripts/".
+    -- It should be "/home/your-username/.config/mpv/scripts/" under Unix-like systems.
     --
     -- To work with it, open the mpv pseudo-GUI, just select an AceStream link you
     -- found over the internet (it should be "acestream://content-id" format), and 
@@ -34,15 +41,21 @@ local function on_start()
     if (type(aceStreamURL) ~= "string") then do return end end
     aceStreamURL = string.gsub(aceStreamURL, " ", "")
     
-    local aceStreamProt = "acestream://";
+    local aceStreamProt = "acestream://"
     local aceProtPos = string.find(aceStreamURL, aceStreamProt)
     if (type(aceProtPos) ~= "number") then do return end end
     if (aceProtPos ~= 1) then do return end end
     
+    msg.log("info", "AceStream protocol detected.")
+    
+    if (type(aceStreamPort) ~= "number") then do 
+        msg.log("error", "AceStream port number is not properly set.")
+        return 
+    end end
+    
     local aceContentID = string.gsub(aceStreamURL, aceStreamProt, "")
     
-    local enginePort = 6878;
-    local httpURL = "http://127.0.0.1:" .. enginePort .. "/ace/getstream?id="
+    local httpURL = "http://127.0.0.1:" .. aceStreamPort .. "/ace/getstream?id="
     local aceStreamHttpURL = httpURL .. aceContentID
     
     mp.set_property("stream-open-filename", aceStreamHttpURL)
