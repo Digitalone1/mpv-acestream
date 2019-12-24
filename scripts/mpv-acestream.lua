@@ -37,28 +37,23 @@ local utils = require 'mp.utils'
 local msg = require 'mp.msg'
 
 local function on_start()
-    local aceStreamURL = mp.get_property_native("stream-open-filename")
-    if (type(aceStreamURL) ~= "string") then do return end end
-    aceStreamURL = string.gsub(aceStreamURL, " ", "")
+    local streamOpenFN = mp.get_property_native("stream-open-filename")
+    if (type(streamOpenFN) ~= "string") then do return end end
     
-    local aceStreamProt = "acestream://"
-    local aceProtPos = string.find(aceStreamURL, aceStreamProt)
-    if (type(aceProtPos) ~= "number") then do return end end
-    if (aceProtPos ~= 1) then do return end end
+    local aceContentID = string.match(streamOpenFN, "acestream://(%w+)")
+    if (aceContentID == nil) then do return end end
     
     msg.log("info", "AceStream protocol detected.")
     
     if (type(aceStreamPort) ~= "number") then do 
         msg.log("error", "AceStream port number is not properly set.")
-        return 
-    end end
+        return end 
+    end
     
-    local aceContentID = string.gsub(aceStreamURL, aceStreamProt, "")
-    
-    local httpURL = "http://127.0.0.1:" .. aceStreamPort .. "/ace/getstream?id="
-    local aceStreamHttpURL = httpURL .. aceContentID
-    
-    mp.set_property("stream-open-filename", aceStreamHttpURL)
+    mp.set_property(
+        "stream-open-filename", 
+        "http://127.0.0.1:" .. aceStreamPort .. "/ace/getstream?id=" .. aceContentID
+    )
 end
 
 mp.add_hook("on_load", 50, on_start)
