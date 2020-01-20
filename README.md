@@ -47,6 +47,7 @@ rebase-start-time=no
 cache=no
 cache-pause-wait=3
 audio-buffer=0
+stream-buffer-size=4k
 ```
 
 And use this profile specifying it from command line: `mpv --profile=acestream acestream://content-id`
@@ -60,9 +61,14 @@ rebase-start-time=no
 cache=no
 cache-pause-wait=3
 audio-buffer=0
+stream-buffer-size=4k
+vd-lavc-threads=1
 demuxer-lavf-o-add=fflags=+nobuffer
 demuxer-lavf-probe-info=nostreams
 demuxer-lavf-analyzeduration=0.1
+video-sync=audio
+interpolation=no
+
 ```
 
 ## F.A.Q.
