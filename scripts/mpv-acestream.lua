@@ -52,7 +52,7 @@ local function on_start()
     
     mp.set_property(
         "stream-open-filename", 
-        "http://127.0.0.1:" .. aceStreamPort .. "/ace/getstream?id=" .. aceContentID
+        "http://127.0.0.1:" .. aceStreamPort .. "/ace/getstream?content_id=" .. aceContentID
     )
 end
 
