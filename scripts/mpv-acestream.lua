@@ -40,7 +40,7 @@ local function on_start()
     local streamOpenFN = mp.get_property_native("stream-open-filename")
     if (type(streamOpenFN) ~= "string") then do return end end
     
-    local aceContentID = string.match(streamOpenFN, "acestream://(%w+)")
+    local aceContentID = string.match(streamOpenFN, "^acestream://(%w+)")
     if (aceContentID == nil) then do return end end
     
     msg.log("info", "AceStream protocol detected.")
